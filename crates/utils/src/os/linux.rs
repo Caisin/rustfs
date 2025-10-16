@@ -33,9 +33,10 @@ pub fn get_info(p: impl AsRef<Path>) -> std::io::Result<DiskInfo> {
     let reserved = match bfree.checked_sub(bavail) {
         Some(reserved) => reserved,
         None => {
-            return Err(Error::other(format!(
-                "detected f_bavail space ({bavail}) > f_bfree space ({bfree}), fs corruption at ({path_display}). please run 'fsck'"
-            )));
+            // return Err(Error::other(format!(
+            //     "detected f_bavail space ({bavail}) > f_bfree space ({bfree}), fs corruption at ({path_display}). please run 'fsck'"
+            // )));
+            0
         }
     };
 
